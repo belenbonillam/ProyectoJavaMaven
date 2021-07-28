@@ -1,29 +1,16 @@
 public class Rapido{
-    public static void rapido(int matrix[], int a, int b){
-        matrix = new int[matrix.length];
-        int buf;
-        int from = a;
-        int to = b;
-        int pivot = matrix[(from+to)/2];
-        do{
-            while(matrix[from] < pivot){
-                from++;
+    public static void seleccion(int[]matrix){
+        int i, k, p, buffer, limit = matrix.length-1;
+        for(k = 0; k < limit; k++){
+            p = k;
+            for(i = k+1; i <= limit; i++){
+                if(matrix[i] < matrix[p]) p = i;
+                if(p != k){
+                    buffer = matrix[p];
+                    matrix[p] = matrix[k];
+                    matrix[k] = buffer;
+                }
             }
-            while(matrix[to] > pivot){
-                to--;
-            }
-            if(from <= to){
-                buf = matrix[from];
-                matrix[from] = matrix[to];
-                matrix[to] = buf;
-                from++; to--;
-            }
-        }while(from <= to);
-        if(a < to){
-            Rapido(matrix, a, to);
         }
-        if(from < b){
-            Rapido(matrix, from, b);
-        }
-    } 
+    }
 }
